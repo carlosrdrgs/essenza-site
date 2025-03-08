@@ -1,64 +1,50 @@
-main {
-    border: solid;
-    border-radius: 0.1in;
-    border-color: #f8f9f9;
-    box-shadow: #f0f0f0 2px 5px 20px;
-    margin: 0 auto;
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9e3e3;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
     padding: 20px;
-    margin-top: 150px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
 }
 
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-family: 'Roboto', sans-serif;
-}
-
-.botoes {
-    display: flex;
+    color: #d6336c;
+    font-size: 2.5em;
 }
 
 button {
-    margin: 0 10px;
-    padding: 10px 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    background-color: #d6336c;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
     cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
 }
 
-.roboto-regular {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+button:hover {
+    background-color: #b52a5a;
 }
 
-body {
-	background-color: #DDCDDC !important;
+.foto {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 20px;
 }
 
-.hidden {
-    display: none;
+.nomes {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #555;
 }
 
-.container2 {
-	border: solid;
-    border-radius: 0.1in;
-    border-color: #f8f9f9;
-    box-shadow: #f0f0f0 2px 5px 20px;
-    margin: 0 auto;
-    padding: 20px;
-    margin-top: 150px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-}
-
-.container2 img {
-	height: 900px;
+.nomes p {
+    margin: 10px 0;
 }
