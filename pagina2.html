@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Minhas Amigas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts - Roboto Bold -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Aplicando a fonte Roboto Bold */
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        /* Estilo personalizado para o botão */
+        .btn-custom {
+            background-color: transparent;
+            border: 2px solid #ff69b4; /* Rosa */
+            color: #ff69b4; /* Rosa */
+            padding: 10px 20px;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+        .btn-custom:hover {
+            background-color: #ff69b4; /* Rosa */
+            color: #000; /* Preto */
+            border-color: #ff69b4; /* Rosa */
+        }
+        /* Estilo para o contador */
+        .contador {
+            color: #808080; /* Cinza */
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        /* Estilo para o player do Spotify */
+        .spotify-player {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="bg-black text-white text-center">
+    <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+        <!-- Player do Spotify -->
+        <div class="spotify-player">
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4KEEy2crzoJGOVRnUYf9bL?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+
+        <h1 class="mb-4">Feliz Dia das Mulheres!</h1>
+        <img src="foto_amigas.jpg" alt="Foto de Thais, Emily, Evellyn e Lilian" class="img-fluid rounded mb-4" style="max-width: 300px;">
+        <div class="nomes mb-4">
+            <p class="mb-1">Thais - Since 2022</p>
+            <div class="contador" id="contador-thais"></div>
+
+            <p class="mb-1">Emily - Since 2023</p>
+            <div class="contador" id="contador-emily"></div>
+
+            <p class="mb-1">Evellyn - Since 2023</p>
+            <div class="contador" id="contador-evellyn"></div>
+
+            <p class="mb-1">Lilian - Since 2023</p>
+            <div class="contador" id="contador-lilian"></div>
+        </div>
+        <a href="index.html" class="btn btn-custom">Voltar</a>
+    </div>
+
+    <script>
+        // Função para calcular a diferença de tempo
+        function calcularTempo(dataInicial, idContador) {
+            const hoje = new Date('2025-03-08'); // Data fixa: 08/03/2025
+            const dataConhecimento = new Date(dataInicial); // Data que conheceu a amiga
+            const diff = hoje - dataConhecimento; // Diferença em milissegundos
+
+            // Convertendo a diferença para dias, meses e anos
+            const umDia = 1000 * 60 * 60 * 24; // Milissegundos em um dia
+            const umAno = umDia * 365; // Milissegundos em um ano
+            const umMes = umDia * 30; // Aproximação de milissegundos em um mês
+
+            const anos = Math.floor(diff / umAno);
+            const meses = Math.floor((diff % umAno) / umMes);
+            const dias = Math.floor((diff % umMes) / umDia);
+
+            // Exibindo o contador
+            document.getElementById(idContador).innerText = `${anos} anos, ${meses} meses e ${dias} dias`;
+        }
+
+        // Datas que você conheceu cada amiga (formato: AAAA-MM-DD)
+        calcularTempo('2022-02-01', 'contador-thais'); // Thais
+        calcularTempo('2023-02-06', 'contador-emily'); // Emily
+        calcularTempo('2023-06-18', 'contador-evellyn'); // Evellyn
+        calcularTempo('2023-06-24', 'contador-lilian'); // Lilian
+    </script>
+</body>
+</html>
