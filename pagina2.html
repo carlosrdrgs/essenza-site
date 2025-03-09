@@ -12,6 +12,8 @@
         /* Aplicando a fonte Roboto Bold */
         body {
             font-family: 'Roboto', sans-serif;
+            background-color: black;
+            overflow: hidden;
         }
         /* Estilo personalizado para o botão */
         .btn-custom {
@@ -37,13 +39,25 @@
         .spotify-player {
             margin-bottom: 10px;
         }
+        /* Estilo para as pétalas */
+        .petal {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/64/Red_rose.svg');
+            background-size: cover;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
     </style>
 </head>
 <body class="bg-black text-white text-center">
     <div class="container d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh; padding-top: 10px;">
         <!-- Player do Spotify -->
-        <br>
-        <br>
         <div class="spotify-player">
             <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4KEEy2crzoJGOVRnUYf9bL?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
@@ -75,24 +89,43 @@
             const dataConhecimento = new Date(dataInicial); // Data que conheceu a amiga
             const diff = hoje - dataConhecimento; // Diferença em milissegundos
 
-            // Convertendo a diferença para dias, meses e anos
-            const umDia = 1000 * 60 * 60 * 24; // Milissegundos em um dia
-            const umAno = umDia * 365; // Milissegundos em um ano
-            const umMes = umDia * 30; // Aproximação de milissegundos em um mês
+            const umDia = 1000 * 60 * 60 * 24;
+            const umAno = umDia * 365;
+            const umMes = umDia * 30;
 
             const anos = Math.floor(diff / umAno);
             const meses = Math.floor((diff % umAno) / umMes);
             const dias = Math.floor((diff % umMes) / umDia);
 
-            // Exibindo o contador
             document.getElementById(idContador).innerText = `${anos} anos, ${meses} meses e ${dias} dias`;
         }
 
-        // Datas que você conheceu cada amiga (formato: AAAA-MM-DD)
-        calcularTempo('2022-02-01', 'contador-thais'); // Thais
-        calcularTempo('2023-02-06', 'contador-emily'); // Emily
-        calcularTempo('2023-06-18', 'contador-evellyn'); // Evellyn
-        calcularTempo('2023-06-24', 'contador-lilian'); // Lilian
+        // Datas que você conheceu cada amiga
+        calcularTempo('2022-02-01', 'contador-thais');
+        calcularTempo('2023-02-06', 'contador-emily');
+        calcularTempo('2023-06-18', 'contador-evellyn');
+        calcularTempo('2023-06-24', 'contador-lilian');
+
+        // Função para criar as pétalas de rosa
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            petal.style.left = Math.random() * window.innerWidth + 'px';
+            petal.style.animationDuration = (Math.random() * 3 + 2) + 's'; // Duração aleatória
+            document.body.appendChild(petal);
+
+            setTimeout(() => {
+                petal.remove();
+            }, 5000); // Remove a pétala após cair
+        }
+
+        // Inicia a chuva de rosas ao carregar a página
+        let intervalId = setInterval(createPetal, 200); // Gera pétalas a cada 200ms
+
+        // Para a chuva após 6 segundos
+        setTimeout(() => {
+            clearInterval(intervalId);
+        }, 6000);
     </script>
 </body>
 </html>
