@@ -1,26 +1,40 @@
-document.getElementById("animate_confetti").addEventListener("click", () => {
-    let params = {
-        particleCount: 500,
-        spread: 90,
-        startVelocity: 70,
-        origin: { x: 0, y: 0.5 },
-        angle: 45
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const contentSections = document.querySelectorAll('.content-section');
+    const headerTitle = document.getElementById('header-title');
+
+    const navigateTo = (hash) => {
+        const activeLink = document.querySelector(`.nav-link[href="${hash}"]`);
+        if (!activeLink) return;
+
+        // Pega o título do atributo data-title do link
+        const newTitle = activeLink.getAttribute('data-title');
+        headerTitle.textContent = newTitle;
+
+        // Troca a classe 'active' nos links da navegação
+        navLinks.forEach(link => link.classList.remove('active'));
+        activeLink.classList.add('active');
+
+        // Troca a classe 'active' nas seções de conteúdo
+        contentSections.forEach(section => section.classList.remove('active'));
+        const activeSection = document.querySelector(hash);
+        if (activeSection) {
+            activeSection.classList.add('active');
+        }
     };
 
-    // Joga confetes da esquerda pra direita
-    confetti(params);
+    // Adiciona o evento de clique para os links da navegação
+    navLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault(); // Impede o comportamento padrão do link
+            const targetId = link.getAttribute('href');
+            navigateTo(targetId);
+        });
+    });
 
-    // Joga confetes da direita para a esquerda
-    params.origin.x = 1;
-    params.angle = 135;
-    confetti(params);
-
-    // Altera a cor de fundo
-    document.body.style.backgroundColor = "#FFD700";
-
-    // Oculta a <main>
-    document.getElementById("mainContent").style.display = "none";
-
-    // Exibe a <div> oculta
-    document.getElementById("hiddenDiv").classList.remove("hidden");
+    // Função global para ser usada em botões (como o da tela inicial)
+    window.navigateTo = navigateTo;
+    
+    // Define a tela inicial ao carregar a página
+    navigateTo('#inicio');
 });

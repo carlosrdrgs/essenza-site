@@ -1,50 +1,118 @@
-/* Estilos gerais */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9e3e3;
-    color: #333;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+:root {
+    --primary-color: #A68A64;
+    --secondary-color: #383838;
+    --background-color: #F8F5F2;
+    --nav-background: #FFFFFF;
+    --header-height: 60px;
+    --nav-height: 70px;
+    --app-padding: 25px;
+    --transition-speed: 0.4s; /* Velocidade da animação */
 }
 
-.container {
-    padding: 20px;
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
-h1 {
-    color: #d6336c;
-    font-size: 2.5em;
+html, body {
+    height: 100%; width: 100%;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--secondary-color);
 }
 
-button {
-    background-color: #d6336c;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1.2em;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 20px;
+#app-header {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: var(--header-height);
+    background-color: var(--nav-background);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000;
 }
 
-button:hover {
-    background-color: #b52a5a;
+#header-title { font-size: 1.1rem; font-weight: 500; }
+
+/* O container principal agora funciona como uma "viewport" para o slide */
+#app-content {
+    height: 100%; width: 100%;
+    position: relative;
+    overflow: hidden; /* Esconde as seções que estão fora da tela */
 }
 
-.foto {
-    width: 300px;
-    height: auto;
-    border-radius: 10px;
-    margin-top: 20px;
+.content-section {
+    position: absolute; top: var(--header-height); left: 0;
+    width: 100%;
+    height: calc(100vh - var(--header-height) - var(--nav-height));
+    overflow-y: auto;
+    background-color: var(--background-color);
+    padding: var(--app-padding);
+    
+    /* Prepara as seções para a animação */
+    transition: transform var(--transition-speed) ease-in-out;
 }
 
-.nomes {
-    margin-top: 20px;
-    font-size: 1.2em;
-    color: #555;
+/* ESTADOS DE ANIMAÇÃO */
+/* Posição inicial (ativa e no centro) */
+.content-section.active {
+    transform: translateX(0);
+    z-index: 100;
+}
+/* Posição das telas que já passaram (saíram para a esquerda) */
+.content-section.prev {
+    transform: translateX(-100%);
+    z-index: 99;
+}
+/* Posição das próximas telas (esperando à direita) */
+.content-section.next {
+    transform: translateX(100%);
+    z-index: 99;
 }
 
-.nomes p {
-    margin: 10px 0;
+
+/* --- O RESTANTE DO CSS É PRATICAMENTE O MESMO --- */
+
+.content-section.no-scroll { overflow-y: hidden; }
+.content-section.no-scroll .container {
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: center; height: 100%;
 }
+.container { max-width: 600px; margin: 0 auto; text-align: center; }
+.section-intro { font-size: 1rem; margin-bottom: 25px; color: #555; }
+.logo { max-width: 100px; margin-bottom: 5px; }
+.app-title { font-size: 2.2rem; font-weight: 700; }
+.app-subtitle { font-size: 1rem; font-weight: 300; letter-spacing: 2px; margin-top: -8px; color: var(--primary-color); }
+.tagline { margin: 15px 0 25px 0; font-size: 1rem; }
+.cta-button {
+    background-color: var(--primary-color); color: white; border: none;
+    padding: 14px 30px; border-radius: 50px; font-size: 1rem; font-weight: 500;
+    cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+.cta-button:active { transform: scale(0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.service-card {
+    background-color: #fff; padding: 25px; border-radius: 12px;
+    margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); text-align: center;
+}
+.service-card i { font-size: 2rem; color: var(--primary-color); margin-bottom: 15px; }
+.service-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+.portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.portfolio-grid img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; }
+.contact-info { margin: 30px 0; text-align: left; display: inline-block; }
+.contact-info p { font-size: 1rem; margin-bottom: 15px; }
+.contact-info i { color: var(--primary-color); margin-right: 15px; width: 20px; text-align: center; }
+
+#bottom-nav {
+    position: fixed; bottom: 0; left: 0;
+    width: 100%; height: var(--nav-height);
+    background-color: var(--nav-background);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.08);
+    display: flex; justify-content: space-around; z-index: 1000;
+}
+.nav-link {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-decoration: none; color: #999; flex-grow: 1; transition: all 0.3s ease;
+}
+.nav-link.active { color: var(--primary-color); transform: translateY(-5px); }
+.nav-link i { font-size: 1.5rem; margin-bottom: 4px; }
+.nav-link span { font-size: 0.7rem; font-weight: 500; }
