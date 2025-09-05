@@ -6,7 +6,7 @@
     --header-height: 60px;
     --nav-height: 70px;
     --app-padding: 25px;
-    --transition-speed: 0.4s; /* Velocidade da animação */
+    --transition-speed: 0.4s;
 }
 
 * {
@@ -33,11 +33,10 @@ html, body {
 
 #header-title { font-size: 1.1rem; font-weight: 500; }
 
-/* O container principal agora funciona como uma "viewport" para o slide */
 #app-content {
     height: 100%; width: 100%;
     position: relative;
-    overflow: hidden; /* Esconde as seções que estão fora da tela */
+    overflow: hidden;
 }
 
 .content-section {
@@ -47,30 +46,13 @@ html, body {
     overflow-y: auto;
     background-color: var(--background-color);
     padding: var(--app-padding);
-    
-    /* Prepara as seções para a animação */
     transition: transform var(--transition-speed) ease-in-out;
 }
 
-/* ESTADOS DE ANIMAÇÃO */
-/* Posição inicial (ativa e no centro) */
-.content-section.active {
-    transform: translateX(0);
-    z-index: 100;
-}
-/* Posição das telas que já passaram (saíram para a esquerda) */
-.content-section.prev {
-    transform: translateX(-100%);
-    z-index: 99;
-}
-/* Posição das próximas telas (esperando à direita) */
-.content-section.next {
-    transform: translateX(100%);
-    z-index: 99;
-}
-
-
-/* --- O RESTANTE DO CSS É PRATICAMENTE O MESMO --- */
+/* ESTADOS DE ANIMAÇÃO DE SLIDE */
+.content-section.active { transform: translateX(0); z-index: 100; }
+.content-section.prev { transform: translateX(-100%); z-index: 99; }
+.content-section.next { transform: translateX(100%); z-index: 99; }
 
 .content-section.no-scroll { overflow-y: hidden; }
 .content-section.no-scroll .container {
@@ -79,10 +61,14 @@ html, body {
 }
 .container { max-width: 600px; margin: 0 auto; text-align: center; }
 .section-intro { font-size: 1rem; margin-bottom: 25px; color: #555; }
+
+/* TELA DE INÍCIO */
 .logo { max-width: 100px; margin-bottom: 5px; }
 .app-title { font-size: 2.2rem; font-weight: 700; }
 .app-subtitle { font-size: 1rem; font-weight: 300; letter-spacing: 2px; margin-top: -8px; color: var(--primary-color); }
 .tagline { margin: 15px 0 25px 0; font-size: 1rem; }
+
+/* BOTÃO CTA */
 .cta-button {
     background-color: var(--primary-color); color: white; border: none;
     padding: 14px 30px; border-radius: 50px; font-size: 1rem; font-weight: 500;
@@ -90,18 +76,73 @@ html, body {
     transition: all 0.3s ease;
 }
 .cta-button:active { transform: scale(0.95); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-.service-card {
-    background-color: #fff; padding: 25px; border-radius: 12px;
-    margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); text-align: center;
-}
-.service-card i { font-size: 2rem; color: var(--primary-color); margin-bottom: 15px; }
-.service-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+
+/* PORTFOLIO / INSPIRAÇÃO */
 .portfolio-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .portfolio-grid img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; }
-.contact-info { margin: 30px 0; text-align: left; display: inline-block; }
-.contact-info p { font-size: 1rem; margin-bottom: 15px; }
-.contact-info i { color: var(--primary-color); margin-right: 15px; width: 20px; text-align: center; }
 
+/* NOVA TELA "CRIAR PROJETO" */
+.step-container {
+    background-color: #fff; padding: 20px; border-radius: 12px;
+    margin-bottom: 25px; box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    text-align: center; border: 1px solid #eee;
+}
+.step-icon {
+    font-size: 1.5rem; color: var(--primary-color); background-color: #f8f5f2;
+    width: 50px; height: 50px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 15px auto;
+}
+.step-container h3 { font-weight: 600; margin-bottom: 5px; }
+.step-container p { font-size: 0.9rem; color: #666; line-height: 1.5; }
+
+/* Caixa de Upload */
+.upload-box {
+    border: 2px dashed #ddd; border-radius: 8px; padding: 30px;
+    margin-top: 20px; cursor: pointer; transition: background-color 0.3s;
+    position: relative;
+}
+.upload-box:hover { background-color: #f9f9f9; }
+.upload-box i { font-size: 1.5rem; color: #ccc; display: block; margin-bottom: 10px; }
+.upload-box span { color: #aaa; }
+.upload-box input[type="file"] { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+
+/* Formulário de Quiz */
+.quiz-form { margin-top: 20px; text-align: left; }
+.quiz-form label { font-weight: 500; display: block; margin-bottom: 8px; }
+.quiz-form input, .quiz-form select {
+    width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;
+    margin-bottom: 15px; font-family: 'Poppins', sans-serif;
+}
+.quiz-form .cta-button { width: 100%; margin-top: 10px; }
+
+/* Rastreador de Status */
+.status-tracker { margin-top: 25px; text-align: left; }
+.status-item { position: relative; padding-left: 30px; padding-bottom: 25px; }
+.status-item:not(:last-child)::before {
+    content: ''; position: absolute; left: 7px; top: 8px;
+    width: 2px; height: 100%; background-color: #e0e0e0;
+}
+.status-dot {
+    position: absolute; left: 0; top: 0; width: 16px; height: 16px;
+    border-radius: 50%; background-color: #e0e0e0;
+    border: 3px solid var(--background-color);
+}
+.status-text h4 { font-weight: 600; font-size: 1rem; color: #ccc; }
+.status-text p { font-size: 0.85rem; color: #ccc; }
+.status-item.completed .status-dot, .status-item.active .status-dot { background-color: var(--primary-color); }
+.status-item.completed:not(:last-child)::before { background-color: var(--primary-color); }
+.status-item.completed h4, .status-item.completed p, .status-item.active h4, .status-item.active p { color: var(--secondary-color); }
+.status-item.active .status-dot { transform: scale(1.2); }
+
+/* Tela de Resultado da IA */
+#resultado-ia { border: 2px solid var(--primary-color); }
+.resultado-comparativo { display: flex; justify-content: space-around; gap: 15px; margin-top: 20px; }
+.imagem-resultado { width: 50%; text-align: center; }
+.imagem-resultado img { width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.imagem-resultado span { font-weight: 500; margin-top: 8px; display: block; font-size: 0.9rem; color: #555; }
+
+/* NAVEGAÇÃO INFERIOR */
 #bottom-nav {
     position: fixed; bottom: 0; left: 0;
     width: 100%; height: var(--nav-height);
