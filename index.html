@@ -6,7 +6,7 @@
     <title>Essenza Design & Marketing</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -20,83 +20,117 @@
     </header>
 
     <main id="app-content">
-        <section id="inicio" class="content-section active no-scroll">
+        <section id="inicio" class="content-section no-scroll" data-index="0">
             <div class="container">
                 <img src="https://i.imgur.com/uFggBeI.png" alt="Logo Essenza" class="logo">
                 <h2 class="app-title">Essenza</h2>
                 <h3 class="app-subtitle">Design & Marketing</h3>
-                <p class="tagline">Aumente seu faturamento com um design que vende.</p>
-                <button class="cta-button" onclick="navigateTo('#servicos')">Descubra como</button>
+                <p class="tagline">Transforme seu ambiente com um clique. O design dos seus sonhos, gerado por IA.</p>
+                <button class="cta-button" onclick="navigateTo(1)">Comece seu projeto</button>
             </div>
         </section>
 
-        <section id="servicos" class="content-section">
+        <section id="criar-projeto" class="content-section" data-index="1">
             <div class="container">
-                <p class="section-intro">Unimos design de interiores e inteligência de mercado para criar espaços comerciais que não apenas encantam, mas geram resultados concretos.</p>
-                
-                <div class="service-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>1. Diagnóstico e Estratégia</h3>
-                    <p>Analisamos seu modelo de negócio, público-alvo e metas para desenvolver um projeto focado em otimizar a jornada do cliente e aumentar a conversão.</p>
-                </div>
-                
-                <div class="service-card">
-                    <i class="fas fa-store"></i>
-                    <h3>2. Design e Reforma do PDV</h3>
-                    <p>Executamos a transformação completa do seu espaço, alinhando a estética da sua marca a um layout funcional que estimula o consumo e melhora a experiência.</p>
+                <div class="step-container">
+                    <div class="step-icon"><i class="fas fa-camera"></i></div>
+                    <h3>Passo 1: Seu Ambiente</h3>
+                    <p>Tire ou envie uma foto do espaço que você quer transformar. Nossa IA fará a leitura inicial.</p>
+                    <div class="upload-box">
+                        <i class="fas fa-upload"></i>
+                        <span>Clique para enviar um arquivo</span>
+                        <input type="file" accept="image/*">
+                    </div>
                 </div>
 
-                <div class="service-card">
-                    <i class="fas fa-rocket"></i>
-                    <h3>3. Marketing de Relançamento</h3>
-                    <p>Coordenamos a campanha de reinauguração para gerar impacto na mídia, atrair público qualificado e garantir o retorno sobre o seu investimento.</p>
+                <div class="step-container">
+                    <div class="step-icon"><i class="fas fa-pencil-alt"></i></div>
+                    <h3>Passo 2: Suas Preferências</h3>
+                    <p>Responda algumas perguntas para entendermos seu estilo e suas necessidades.</p>
+                    <form class="quiz-form">
+                        <label>Qual estilo mais te agrada?</label>
+                        <select>
+                            <option>Moderno</option>
+                            <option>Industrial</option>
+                            <option>Clássico</option>
+                            <option>Minimalista</option>
+                        </select>
+                        <label>Quais cores você prefere na sua paleta?</label>
+                        <input type="text" placeholder="Ex: Tons neutros, azul, verde...">
+                        <label>Qual o principal uso do ambiente?</label>
+                        <input type="text" placeholder="Ex: Home office, sala de estar, loja...">
+                        <button type="submit" class="cta-button" onclick="event.preventDefault(); simularGeracaoIA();">Gerar Pré-Projeto</button>
+                    </form>
+                </div>
+
+                <div class="step-container">
+                    <div class="step-icon"><i class="fas fa-tasks"></i></div>
+                    <h3>Status do Seu Projeto</h3>
+                    <p>Acompanhe em tempo real cada etapa da criação.</p>
+                    <div class="status-tracker">
+                        <div class="status-item completed">
+                            <div class="status-dot"></div>
+                            <div class="status-text"><h4>Pedido Recebido</h4><p>Recebemos suas fotos e preferências.</p></div>
+                        </div>
+                        <div class="status-item"><div class="status-dot"></div><div class="status-text"><h4>Preparando seu pré-projeto</h4><p>Nossos designers e IA estão trabalhando.</p></div></div>
+                        <div class="status-item"><div class="status-dot"></div><div class="status-text"><h4>Pronto para Análise</h4><p>Seu projeto está pronto para os ajustes finais.</p></div></div>
+                        <div class="status-item"><div class="status-dot"></div><div class="status-text"><h4>Projeto Finalizado</h4><p>Parabéns! Seu novo ambiente está pronto.</p></div></div>
+                    </div>
+                </div>
+                
+                <div class="step-container" id="resultado-ia" style="display: none;">
+                    <div class="step-icon"><i class="fas fa-magic"></i></div>
+                    <h3>Seu Pré-Projeto está Pronto!</h3>
+                    <p>Nossa IA criou uma primeira versão baseada no seu estilo. Veja o antes e depois!</p>
+                    <div class="resultado-comparativo">
+                        <div class="imagem-resultado">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE2ODEwOTg0MjU&ixlib=rb-4.0.3&q=80&w=400" alt="Antes">
+                            <span>Antes</span>
+                        </div>
+                        <div class="imagem-resultado">
+                            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDExfHxpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE2ODEwOTg0MjU&ixlib.rb-4.0.3&q=80&w=400" alt="Depois">
+                            <span>Depois (Gerado por IA)</span>
+                        </div>
+                    </div>
+                    <p style="margin-top: 20px;">Gostou? Nossos designers usarão esta versão como ponto de partida para refinar e entregar seu projeto final.</p>
+                    <button class="cta-button" onclick="alert('Ótimo! Agora vamos para os ajustes finais com nossa equipe.');">Aprovar e continuar</button>
                 </div>
             </div>
         </section>
-        
-        <section id="portfolio" class="content-section">
+
+        <section id="meus-projetos" class="content-section no-scroll" data-index="2">
             <div class="container">
-                <p class="section-intro">Veja como transformamos espaços comerciais em negócios mais lucrativos.</p>
+                <i class="fas fa-lock" style="font-size: 3rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
+                <h3>Área do Cliente</h3>
+                <p>Esta área seria para você acessar seus projetos após fazer o login. Em breve!</p>
+            </div>
+        </section>
+
+        <section id="inspiracao" class="content-section" data-index="3">
+            <div class="container">
+                <p class="section-intro">Navegue por ambientes ("Casas" e "Estúdios") que transformamos e inspire-se para o seu projeto.</p>
                 <div class="portfolio-grid">
                     <img src="https://images.unsplash.com/photo-1600607687939-ce8a67767e5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDN8fGludGVyaW9yJTIwZGVzaWdufGVufDB8fHx8MTY4MTA5ODQyNQ&ixlib=rb-4.0.3&q=80&w=400" alt="Projeto 1">
                     <img src="https://images.unsplash.com/photo-1556702585-12a506a78293?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDEyfHxyZXRhaWwlMjBzdG9yZXxlbnwwfHx8fDE2ODEwOTg0Nzc&ixlib=rb-4.0.3&q=80&w=400" alt="Projeto 2">
-                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE2ODEwOTg0MjU&ixlib=rb-4.0.3&q=80&w=400" alt="Projeto 3">
-                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDExfHxpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE2ODEwOTg0MjU&ixlib.rb-4.0.3&q=80&w=400" alt="Projeto 4">
-                    <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDIyfHxpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE2ODEwOTg0MjU&ixlib=rb-4.0.3&q=80&w=400" alt="Projeto 5">
-                    <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDI3fHxpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE2ODEwOTg0MjU&ixlib=rb-4.0.3&q=80&w=400" alt="Projeto 6">
+                    <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDIyfHxpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE2ODEwOTg0MjU&ixlib-rb-4.0.3&q=80&w=400" alt="Projeto 5">
+                    <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDI3fHxpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE2ODEwOTg0MjU&ixlib-rb-4.0.3&q=80&w=400" alt="Projeto 6">
                 </div>
-            </div>
-        </section>
-
-        <section id="contato" class="content-section no-scroll">
-            <div class="container">
-                <p class="section-intro">Pronto para elevar o patamar da sua empresa? Entre em contato e solicite uma proposta.</p>
-                <div class="contact-info">
-                    <p><i class="fas fa-envelope"></i> contato@essenza.com</p>
-                    <p><i class="fas fa-phone"></i> (XX) 99999-8888</p>
-                    <p><i class="fab fa-linkedin"></i> linkedin.com/company/essenza-design</p>
-                </div>
-                <button class="cta-button">Agendar uma consultoria</button>
             </div>
         </section>
     </main>
 
     <nav id="bottom-nav">
-        <a href="#inicio" class="nav-link active" data-title="Início">
-            <i class="fas fa-home"></i>
-            <span>Início</span>
+        <a href="#inicio" class="nav-link" data-index="0" data-title="Início">
+            <i class="fas fa-home"></i><span>Início</span>
         </a>
-        <a href="#servicos" class="nav-link" data-title="Nossos Serviços">
-            <i class="fas fa-concierge-bell"></i>
-            <span>Serviços</span>
+        <a href="#criar-projeto" class="nav-link" data-index="1" data-title="Novo Projeto">
+            <i class="fas fa-magic"></i><span>Criar Projeto</span>
         </a>
-        <a href="#portfolio" class="nav-link" data-title="Cases de Sucesso">
-            <i class="fas fa-image"></i>
-            <span>Cases</span>
+        <a href="#meus-projetos" class="nav-link" data-index="2" data-title="Meus Projetos">
+            <i class="fas fa-folder-open"></i><span>Meus Projetos</span>
         </a>
-        <a href="#contato" class="nav-link" data-title="Contato">
-            <i class="fas fa-comments"></i>
-            <span>Contato</span>
+        <a href="#inspiracao" class="nav-link" data-index="3" data-title="Inspiração">
+            <i class="fas fa-image"></i><span>Inspiração</span>
         </a>
     </nav>
 
