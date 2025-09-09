@@ -25,7 +25,7 @@
                 <img src="logo.jpeg" alt="Logo Essenza" class="logo">
                 <h2 class="app-title">Essenza</h2>
                 <h3 class="app-subtitle">Design & Marketing</h3>
-                <p class="tagline">Transforme seu ambiente com um clique. O design dos seus sonhos.</p>
+                <p class="tagline">Transforme seu ambiente com um clique. O design dos seus sonhos, gerado por IA.</p>
                 <button class="cta-button" onclick="navigateTo(1)">Comece seu projeto</button>
             </div>
         </section>
@@ -35,7 +35,7 @@
                 <div class="step-container">
                     <div class="step-icon"><i class="fas fa-camera"></i></div>
                     <h3>Passo 1: Seu Ambiente</h3>
-                    <p>Tire ou envie uma foto do espaço que você quer transformar.</p>
+                    <p>Tire ou envie uma foto do espaço que você quer transformar. Nossa IA fará a leitura inicial.</p>
                     <div class="upload-box">
                         <i class="fas fa-upload"></i>
                         <span>Clique para enviar um arquivo</span>
@@ -72,7 +72,7 @@
                             <div class="status-dot"></div>
                             <div class="status-text"><h4>Pedido Recebido</h4><p>Recebemos suas fotos e preferências.</p></div>
                         </div>
-                        <div class="status-item"><div class="status-dot"></div><div class="status-text"><h4>Preparando seu pré-projeto</h4><p>Nossos designers estão trabalhando.</p></div></div>
+                        <div class="status-item"><div class="status-dot"></div><div class="status-text"><h4>Preparando seu pré-projeto</h4><p>Nossos designers e IA estão trabalhando.</p></div></div>
                         <div class="status-item"><div class="status-dot"></div><div class="status-text"><h4>Pronto para Análise</h4><p>Seu projeto está pronto para os ajustes finais.</p></div></div>
                         <div class="status-item"><div class="status-dot"></div><div class="status-text"><h4>Projeto Finalizado</h4><p>Parabéns! Seu novo ambiente está pronto.</p></div></div>
                     </div>
@@ -108,12 +108,23 @@
 
         <section id="inspiracao" class="content-section" data-index="3">
             <div class="container">
-                <p class="section-intro">Navegue por ambientes ("Casas" e "Estúdios") que transformamos e inspire-se para o seu projeto.</p>
+                <p class="section-intro">Navegue por ambientes que transformamos e inspire-se para o seu projeto.</p>
+                
+                <div id="filter-buttons">
+                    <button class="filter-btn active" data-filter="todos">Todos</button>
+                    <button class="filter-btn" data-filter="casas">Casas</button>
+                    <button class="filter-btn" data-filter="escritorios">Escritórios</button>
+                    <button class="filter-btn" data-filter="lojas">Lojas</button>
+                    <button class="filter-btn" data-filter="fachadas">Fachadas</button>
+                </div>
+
                 <div class="portfolio-grid">
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a67767e5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDN8fGludGVyaW9yJTIwZGVzaWdufGVufDB8fHx8MTY4MTA5ODQyNQ&ixlib=rb-4.0.3&q=80&w=400" alt="Projeto 1">
-                    <img src="https://images.unsplash.com/photo-1556702585-12a506a78293?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDEyfHxyZXRhaWwlMjBzdG9yZXxlbnwwfHx8fDE2ODEwOTg0Nzc&ixlib=rb-4.0.3&q=80&w=400" alt="Projeto 2">
-                    <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDIyfHxpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE2ODEwOTg0MjU&ixlib-rb-4.0.3&q=80&w=400" alt="Projeto 5">
-                    <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDI3fHxpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE2ODEwOTg0MjU&ixlib-rb-4.0.3&q=80&w=400" alt="Projeto 6">
+                    <div class="portfolio-item" data-category="casas"><img src="https://images.unsplash.com/photo-1600607687939-ce8a67767e5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDN8fGludGVyaW9yJTIwZGVzaWdufGVufDB8fHx8MTY4MTA5ODQyNQ&ixlib=rb-4.0.3&q=80&w=400" alt="Projeto de Casa"></div>
+                    <div class="portfolio-item" data-category="lojas"><img src="https://images.unsplash.com/photo-1556702585-12a506a78293?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDEyfHxyZXRhaWwlMjBzdG9yZXxlbnwwfHx8fDE2ODEwOTg0Nzc&ixlib=rb-4.0.3&q=80&w=400" alt="Projeto de Loja"></div>
+                    <div class="portfolio-item" data-category="escritorios"><img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDIyfHxpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE2ODEwOTg0MjU&ixlib-rb-4.0.3&q=80&w=400" alt="Projeto de Escritório"></div>
+                    <div class="portfolio-item" data-category="casas"><img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE2ODEwOTg0MjU&ixlib-rb-4.0.3&q=80&w=400" alt="Projeto de Casa 2"></div>
+                    <div class="portfolio-item" data-category="fachadas"><img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGZhY2FkZXxlbnwwfHx8fDE2ODEwOTg0Nzc&ixlib=rb-4.0.3&q=80&w=400" alt="Projeto de Fachada"></div>
+                    <div class="portfolio-item" data-category="lojas"><img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDI3fHxpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE2ODEwOTg0MjU&ixlib-rb-4.0.3&q=80&w=400" alt="Projeto de Loja 2"></div>
                 </div>
             </div>
         </section>
