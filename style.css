@@ -13,6 +13,11 @@
     --transition-speed: 0.4s;
 }
 
+.logo { 
+    max-width: 150px; /* Define um tamanho máximo de 150px */
+    height: auto;     /* Garante que a proporção da imagem seja mantida */
+    margin-bottom: 5px; 
+}
 
 * {
     margin: 0; padding: 0; box-sizing: border-box;
@@ -184,6 +189,7 @@ html, body {
 .nav-link.active { color: var(--primary-color); transform: translateY(-5px); }
 .nav-link i { font-size: 1.5rem; margin-bottom: 4px; }
 .nav-link span { font-size: 0.7rem; font-weight: 500; }
+
 
 
 
