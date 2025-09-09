@@ -3,8 +3,8 @@
     /* Cores extraídas do novo logo */
     --primary-color: #E685A9;   /* O rosa suave dos detalhes para botões e links */
     --secondary-color: #2E3A59; /* O azul/chumbo escuro do texto para parágrafos */
-    --background-color: #E9F1F8; /* O azul bem clarinho do fundo do logo */
-    --nav-background: #FFFFFF;     /* Branco para os cards e barras, para manter a leveza */
+    --background-color: #ebf8ff; /* O azul bem clarinho do fundo do logo */
+    --nav-background: #ebf8ff;     /* Branco para os cards e barras, para manter a leveza */
     
     /* Variáveis de layout (permanecem as mesmas) */
     --header-height: 60px;
@@ -161,4 +161,5 @@ html, body {
 .nav-link.active { color: var(--primary-color); transform: translateY(-5px); }
 .nav-link i { font-size: 1.5rem; margin-bottom: 4px; }
 .nav-link span { font-size: 0.7rem; font-weight: 500; }
+
 
