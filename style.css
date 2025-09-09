@@ -73,7 +73,6 @@ html, body {
 .section-intro { font-size: 1rem; margin-bottom: 25px; color: #555; }
 
 /* TELA DE INÍCIO */
-.logo { max-width: 100px; margin-bottom: 5px; }
 .app-title { font-size: 2.2rem; font-weight: 700; }
 .app-subtitle { font-size: 1rem; font-weight: 300; letter-spacing: 2px; margin-top: -8px; color: var(--primary-color); }
 .tagline { margin: 15px 0 25px 0; font-size: 1rem; }
@@ -189,6 +188,7 @@ html, body {
 .nav-link.active { color: var(--primary-color); transform: translateY(-5px); }
 .nav-link i { font-size: 1.5rem; margin-bottom: 4px; }
 .nav-link span { font-size: 0.7rem; font-weight: 500; }
+
 
 
 
